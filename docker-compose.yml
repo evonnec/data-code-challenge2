@@ -4,19 +4,19 @@ services:
   postgres:
     image: postgres:latest
     healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
       timeout: 45s
       interval: 10s
       retries: 10
     restart: always
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
       - APP_DB_USER=appuser
-      - APP_DB_PASS=app-password
-      - APP_DB_NAME=formulary_db
+      - APP_DB_PASS=appuser
+      - APP_DB_NAME=formulary
     volumes:
       - ./db:/docker-entrypoint-initdb.d/
       - ./data:/data
     ports:
-      - 5432:5432
+      - 5434:5432

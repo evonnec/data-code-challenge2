@@ -23,14 +23,17 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
   );
   CREATE TABLE IF NOT EXISTS test_formulary(
     FORMULARY_ID TEXT,
-    RXCUI TEXT,
-    TIER_LEVEL_VALUE INT
+    TIER_LEVEL_VALUE INT,
+    RXCUI TEXT
   );
 
   COMMIT;
 
-
 EOSQL
 
 psql --username "$APP_DB_USER" --dbname "$APP_DB_NAME" \
--c "\copy test_formulary FROM '/data/test_formulary.txt' DELIMITER '|' CSV HEADER"
+  -c "\copy test_formulary FROM '/data/test_formulary.txt' DELIMITER '|' CSV HEADER"
+
+tar xvf /data/full_formulary.tar.gz -C /tmp
+psql --username "$APP_DB_USER" --dbname "$APP_DB_NAME" \
+  -c "\copy formulary FROM '/tmp/full_formulary.txt' DELIMITER '|' CSV HEADER"
