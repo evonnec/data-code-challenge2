@@ -30,17 +30,23 @@ The goal is to compare every formulary against a target formulary by calculating
 
 To simplify the analysis, for each pair of formularies compared, if one formulary contains a drug that the other does not, you must assign a tier value of `7` to the "uncovered" drug.
 
-## Problem
+### Requirements
 
 **Notes:**
-The challenge calls for solving the problem by transforming the data in two distinct ways: using pandas (Part 1) and using SQL (Part 3). You may start with whichever approach
+The challenge calls for solving the problem by transforming the data in two distinct ways: using pandas (Part 1) and using SQL (Part 2). You may start with whichever approach
 is easiest for you.  After you've implemented the solution with one approach, you should then attempt to reimplement the solution using the other
 approach as well. In either case, you should execute the query within the python interpreter using sqlalchemy.
 
+For Part 1:
+The code must be written in Python 3.9, and the solution:
+- must be implemented using a `pandas` DataFrame to perform the calculations.
+- the DataFrame should contain a single calculated average tier difference value for each `formulary_id` compared against the target formulary.
+- should be implemented using functions with well-defined interfaces.
 
+
+## Problem
 
 ### Part 1
-
 
 In order to perform this analysis, the data must first be loaded from the database into a DataFrame, allowing the column-wise tier differences between drugs for every pair of formularies to be easily calculated.
 
@@ -98,7 +104,7 @@ For each comparison between two formularies:
 * (A) Calculate the average difference between tiers for all `rxcui`s.
 * (B) Calculate the average difference between tiers for all `rxcui`s except those where the tiers are the same.
 
-In both cases, the results should map the `formulary_id` to the the average tier difference calculated (e.g. in a series or DataFrame).
+In both cases, the results should map the `formulary_id` to the average tier difference calculated (e.g. in a series or DataFrame).
 
 The results produced for both parts (A) and (B) should look something like this:
 
@@ -112,19 +118,12 @@ formulary\_id | tier\_difference
 00019400 | some_value_4
 
 
-Once you are confident you have implemented the logic to produce the DataFrames illustrated in Table-2 and Table-3 above, proceed to part 2.
+Once you are confident you have correctly implemented the logic to produce the DataFrames illustrated in Table-2 and Table-3 above, proceed to part 2.
 
 ### Part 2
-
-There is an additional, more comprehensive formulary dataset contained in the `formulary` database table.  This table has the same structure as the `test_formulary` table, except it contains a few extra columns (which may be ignored) and many more formularies, each of which contains many more drugs.
-The target formulary for this exercise is the same as before, `formulary_id = '00019356'`.  Reuse your previously implemented logic to produce the same calculations for the average tier differences as described in parts (A) and (B) from Part 1 on the `formulary` table.
-
-
-### Requirements
-Your code must be written in Python 3, and you must provide the specific Python version that the code should be executed against.
-
-
-You must use a `pandas` DataFrame to perform these calculations, and you should provide a single calculated average tier difference value for each `formulary_id` compared against the target formulary.
+Re-implement the logic used to produce Table-2 from Part 1 above. However, this time you may not use the the `pandas` `merge` or `join` functions.  Instead, you must use SQL to perform any join logic or reshaping of the data.
 
 ### Part 3
-Re-implement the logic used to produce Table-2 from Part 1 above. However, this time you may not use the the `pandas` `merge` or `join` functions.  Instead, you must use SQL to perform any join logic or reshaping of the data.
+
+There is an additional, more comprehensive formulary dataset contained in the `formulary` database table.  This table has the same structure as the `test_formulary` table, except it contains a few extra columns (which may be ignored) and many more formularies, each of which contains many more drugs.
+The target formulary for this part of the exercise is now `formulary_id = '00022170'`.  Reuse your previously implemented logic to produce the same calculations for the average tier differences as described in parts (A) and (B) from Part 1 on the `formulary` table.
