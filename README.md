@@ -121,9 +121,11 @@ formulary\_id | tier\_difference
 Once you are confident you have correctly implemented the logic to produce the DataFrames illustrated in Table-2 and Table-3 above, proceed to part 2.
 
 ### Part 2
-Re-implement the logic used to produce Table-2 from Part 1 above. However, this time you may not use the the `pandas` `merge` or `join` functions.  Instead, you must use SQL to perform any join logic or reshaping of the data.
+Re-implement the logic used to produce Table-2 & Table-3 from Part 1 above. However, this time you may not use the the `pandas` `merge` or `join` functions.  Instead, you must use SQL to perform any join logic or reshaping of the data.
 
 ### Part 3
 
 There is an additional, more comprehensive formulary dataset contained in the `formulary` database table.  This table has the same structure as the `test_formulary` table, except it contains a few extra columns (which may be ignored) and many more formularies, each of which contains many more drugs.
-The target formulary for this part of the exercise is now `formulary_id = '00022170'`.  Reuse your previously implemented logic to produce the same calculations for the average tier differences as described in parts (A) and (B) from Part 1 on the `formulary` table.
+The target formulary for this part of the exercise is now `formulary_id = '00022170'`.  For each of the exercises below, print out the amount of time it takes for the code to execute.
+* (A) Reuse your previously implemented logic to produce the same calculations for the average tier differences as described in parts (A) and (B) from Part 1 on the `formulary` table.
+* (B) Reuse your previously implemented logic to produce the same calculations for the average tier differences as described in parts (A) and (B) from Part 2 on the `formulary` table.
