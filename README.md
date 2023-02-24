@@ -1,4 +1,4 @@
-# Data Analyst Code Challenge
+# Data Code Challenge
 
 ## Background
 
